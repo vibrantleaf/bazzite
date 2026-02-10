@@ -13,7 +13,7 @@ pkexec bootc switch ghcr.io/vibrantleaf/image-name:leaf
 > It is Highly Recommend that you verify the image's using cosign before rebasing.
 ```bash
 curl -Lo cosign.pub https://raw.githubusercontent.com/vibrantleaf/bazzite/refs/heads/leaf/cosign.pub
-cosign verify --key cosign.pub ghcr.io/vibrantleaf/bazzite:stable
+cosign verify --key cosign.pub ghcr.io/vibrantleaf/image-name:stable
 rm cosign.pub
 ```
 
