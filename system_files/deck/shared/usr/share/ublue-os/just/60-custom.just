@@ -1,5 +1,3 @@
-# vim: set ft=make :
-
 # Use mimalloc globally
 [group("system")]
 use-mimalloc-globally:
