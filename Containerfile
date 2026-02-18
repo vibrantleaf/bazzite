@@ -76,7 +76,6 @@ RUN --mount=type=cache,dst=/var/cache \
         ublue-os/packages \
         ublue-os/obs-vkcapture \
         ycollet/audinux \
-        ublue-os/rom-properties \
         ublue-os/hhd \
         lizardbyte/beta \
         che/nerd-fonts; \
@@ -321,6 +320,8 @@ RUN --mount=type=cache,dst=/var/cache \
         jupiter-sd-mounting-btrfs \
         umu-launcher \
         dbus-x11 \
+        xrandr \
+        evtest \
         xdg-user-dirs \
         xdg-terminal-exec \
         gobject-introspection \
@@ -411,7 +412,7 @@ RUN --mount=type=cache,dst=/var/cache \
             gnome-randr-rust \
             gnome-shell-extension-user-theme \
             gnome-shell-extension-gsconnect \
-            rom-properties-gtk3 \
+            rom-properties-gtk4 \
             ibus-mozc \
             openssh-askpass \
             firewall-config && \
@@ -474,6 +475,7 @@ RUN --mount=type=cache,dst=/var/cache \
     echo "import \"/usr/share/ublue-os/just/82-bazzite-sunshine.just\"" >> /usr/share/ublue-os/justfile && \
     echo "import \"/usr/share/ublue-os/just/82-bazzite-waydroid.just\"" >> /usr/share/ublue-os/justfile && \
     echo "import \"/usr/share/ublue-os/just/83-bazzite-audio.just\"" >> /usr/share/ublue-os/justfile && \
+    echo "import \"/usr/share/ublue-os/just/85-bazzite-image.just\"" >> /usr/share/ublue-os/justfile && \
     echo "import \"/usr/share/ublue-os/just/84-bazzite-virt.just\"" >> /usr/share/ublue-os/justfile && \
     echo "import \"/usr/share/ublue-os/just/86-bazzite-windows.just\"" >> /usr/share/ublue-os/justfile && \
     echo "import \"/usr/share/ublue-os/just/87-bazzite-framegen.just\"" >> /usr/share/ublue-os/justfile && \
@@ -526,7 +528,6 @@ RUN --mount=type=cache,dst=/var/cache \
         ublue-os/packages \
         ublue-os/obs-vkcapture \
         ycollet/audinux \
-        ublue-os/rom-properties \
         ublue-os/hhd \
         lizardbyte/beta \
         che/nerd-fonts; \
