@@ -364,6 +364,15 @@ RUN --mount=type=cache,dst=/var/cache \
     rm -rfv /tmp/com.github.root0emir.ArchLinux-GamingPerformanceTuning
     /ctx/cleanup
 
+# Enable NTSYNC kernel module
+RUN --mount=type=cache,dst=/var/cache \
+    --mount=type=cache,dst=/var/log \
+    --mount=type=bind,from=ctx,source=/,target=/ctx \
+    --mount=type=tmpfs,dst=/tmp \
+    --mount=type=secret,id=GITHUB_TOKEN \
+    echo ntsync | tee /usr/lib/sysctl.d/ntsync.conf && \
+    /ctx/cleanup
+
 # Install ujust-picker from GitHub releases
 RUN --mount=type=cache,dst=/var/cache \
     --mount=type=cache,dst=/var/log \
