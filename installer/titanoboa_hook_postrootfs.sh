@@ -57,11 +57,6 @@ unset -v _icon
 unset -v _icon_symbol
 rm -rf /root/packages
 
-# Install conky conf and helper script
-mkdir -p /usr/share/conky
-curl -fsSL -o /usr/share/conky/conky.conf https://raw.githubusercontent.com/ublue-os/bazzite/testing/installer/conky/conky.conf
-curl -fsSL -o /usr/share/conky/conky_efi.sh https://raw.githubusercontent.com/ublue-os/bazzite/testing/installer/conky/conky_efi.sh
-
 # Secureboot Key Fetch
 mkdir -p /usr/share/ublue-os
 curl -Lo /usr/share/ublue-os/sb_pubkey.der "$sbkey"
@@ -151,6 +146,7 @@ ostreecontainer --url=$imageref:$imagetag --transport=containers-storage --no-si
 %include /usr/share/anaconda/post-scripts/install-configure-upgrade.ks
 %include /usr/share/anaconda/post-scripts/disable-fedora-flatpak.ks
 %include /usr/share/anaconda/post-scripts/install-flatpaks.ks
+%include /usr/share/anaconda/post-scripts/flatpak-restore-selinux-labels.ks
 %include /usr/share/anaconda/post-scripts/secureboot-enroll-key.ks
 %include /usr/share/anaconda/post-scripts/secureboot-docs.ks
 
@@ -331,11 +327,8 @@ if [[ $desktop_env == gnome ]]; then
     sed -i 's@\[Desktop Entry\]@\[Desktop Entry\]\nHidden=true@g' /usr/share/anaconda/gnome/org.fedoraproject.welcome-screen.desktop || :
 fi
 
-# Let only browser/installer/file manager in the task-bar/dock, set new background for GNOME
-if [[ $desktop_env == kde ]]; then
-    sed -i '/<entry name="launchers" type="StringList">/,/<\/entry>/ s/<default>[^<]*<\/default>/<default>preferred:\/\/browser,applications:liveinst.desktop,preferred:\/\/filemanager<\/default>/' \
-        /usr/share/plasma/plasmoids/org.kde.plasma.taskmanager/contents/config/main.xml
-elif [[ $desktop_env == gnome ]]; then
+# Set new background for GNOME
+if [[ $desktop_env == gnome ]]; then
     glib-compile-schemas /usr/share/glib-2.0/schemas
 fi
 
