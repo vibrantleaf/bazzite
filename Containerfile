@@ -209,6 +209,7 @@ RUN --mount=type=cache,dst=/var/cache \
     dnf5 -y copr disable bieszczaders/kernel-cachyos-addons && \
     dnf5 -y install \
         mimalloc \
+        gamemode \
         uld \
         bazaar \
         iwd \
@@ -350,6 +351,17 @@ RUN --mount=type=cache,dst=/var/cache \
     /ctx/ghcurl "https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks" -Lo /usr/bin/winetricks && \
     chmod +x /usr/bin/winetricks && \
     setfattr -n user.component -v "winetricks" /usr/bin/winetricks && \
+    /ctx/cleanup
+
+# Install root0emir's ArchLinux-GamingPerformanceTuning sysctl Tweaks
+RUN --mount=type=cache,dst=/var/cache \
+    --mount=type=cache,dst=/var/log \
+    --mount=type=bind,from=ctx,source=/,target=/ctx \
+    --mount=type=tmpfs,dst=/tmp \
+    --mount=type=secret,id=GITHUB_TOKEN \
+    git clone https://github.com/root0emir/ArchLinux-GamingPerformanceTuning.git /tmp/com.github.root0emir.ArchLinux-GamingPerformanceTuning && \
+    cat /tmp/com.github.root0emir.ArchLinux-GamingPerformanceTuning/Settings/sysctl.conf | tee /usr/lib/sysctl.d/com-github-root0emir-archLinux-gaming-performance-tuning.conf && \
+    rm -rfv /tmp/com.github.root0emir.ArchLinux-GamingPerformanceTuning
     /ctx/cleanup
 
 # Install ujust-picker from GitHub releases
