@@ -3,6 +3,8 @@ Hello, here is a list of the changes that I have made in this soft-fork so far.
 
 - Added: [Microsoft](https://github.com/microsoft/)/[mimalloc](https://github.com/microsoft/mimalloc/)
   - Added: `ujust` script to enable and disable mimalloc globally via `LD_PRELOAD` in `/etc/environment`
+- Added: [root0emir](https://github.com/root0emir)/[ArchLinux-GamingPerformanceTuning's](https://github.com/root0emir/ArchLinux-GamingPerformanceTuning/) [sysctl.conf](https://github.com/root0emir/ArchLinux-GamingPerformanceTuning/blob/main/Settings/sysctl.conf)
+- Enabled: NTSYNC Kernel Module by default
 
 ## how to rebase
 Run `fastfetch` in the Terminal to get your image-name, it should at be arround the top of the output and will probably  be something like `bazzite`, `bazzite-deck`, `bazzite-gnome` or `bazzite-gnome-deck` or alike.
